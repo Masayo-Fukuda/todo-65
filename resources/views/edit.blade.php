@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{ route('posts.store') }}" method="POST">
+                <form action="" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>タイトル</label>
