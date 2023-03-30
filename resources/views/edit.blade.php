@@ -25,7 +25,7 @@
                     <label>画像ファイル</label>
                     <input type=“file”>
                 </div>
-                <button type="submit" class="btn btn-primary">更新</button>
+                <button type="submit" class="btn btn-primary">編集</button>
             </form>
         </div>
     </div>
