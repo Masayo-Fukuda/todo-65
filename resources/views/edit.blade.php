@@ -30,6 +30,10 @@
                     <textarea class="form-control" rows="5" name="contents">{{ $task->contents }}
                     </textarea>
                 </div>
+                <div class="form-group">
+                    <label>画像ファイル</label>
+                    <input type="file">
+                </div>
                 <button type="submit" class="btn btn-primary">編集</button>
             </form>
         </div>
