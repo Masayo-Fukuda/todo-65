@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>create</title>
+    <title>edit</title>
 </head>
 <body>
     <div class="container mt-5">
@@ -25,7 +25,7 @@
                     <label>画像ファイル</label>
                     <input type=“file”>
                 </div>
-                <button type="submit" class="btn btn-primary">作成</button>
+                <button type="submit" class="btn btn-primary">編集</button>
             </form>
         </div>
     </div>
