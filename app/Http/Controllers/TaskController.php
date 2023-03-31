@@ -59,7 +59,7 @@ class TaskController extends Controller
         $task -> contents = $request -> contents;
         $task -> save();
 
-        return redirect()->route('index');
+        return redirect()->route('tasks.index');
     }
 
     function destroy($id)
