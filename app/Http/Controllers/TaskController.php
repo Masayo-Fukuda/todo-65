@@ -38,7 +38,7 @@ class TaskController extends Controller
 
         $task -> save();
 
-        return redirect()->route('task.index');
+        return redirect()->route('tasks.index');
     }
 
     public function edit($id)
