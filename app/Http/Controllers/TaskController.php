@@ -7,6 +7,7 @@ use App\Models\task;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class TaskController extends Controller
 {
     //
@@ -69,4 +70,25 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index');
     }
+
+   
+
+
+    function orderby()
+    {
+        $tasks = Task::orderBy('created_at', 'desc')->get();
+
+        return view('tasks.index', [
+            'tasks' => $tasks
+        ]);
+    }
+
+    function search(Request $request)
+    {
+    $keyword = $request->input('keyword');
+    $tasks = Task::where('title', 'LIKE', "%{$keyword}%")->get();
+    return view('tasks.index', compact('tasks'));
+    }
+
+
 }

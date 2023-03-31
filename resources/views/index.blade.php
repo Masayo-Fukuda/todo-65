@@ -10,6 +10,10 @@
 
 <body>
     <div>投稿一覧</div>
+    <form action="{{ route('tasks.index') }}" method="get">
+        <input type="text" name="keyword">
+        <input type="submit" value="検索">
+    </form>
 
     @foreach ($tasks as $task )
     <div >
