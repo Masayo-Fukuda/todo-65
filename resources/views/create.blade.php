@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-< lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
         </div>
         <div class="">
             <label>画像ファイル</label>
-            <input type="file">
+            <input type="file" name="image_at">
         </div>
 
         <button type="submit" class="">作成</button>
