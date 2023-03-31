@@ -25,7 +25,7 @@
         </div>
         <div class="">
             <label>画像ファイル</label>
-            <input type="file">
+            <input type="file" name="image_at">
         </div>
 
         <button type="submit" class="">作成</button>
