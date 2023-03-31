@@ -33,3 +33,12 @@ Route::get('/tasks/{id}/edit',[App\Http\Controllers\TaskController::class, 'edit
 Route::put('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
 
 Route::delete('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
+
+//テスト用
+Route::get('/c', function () {
+    return view('create');
+});
+
+Route::get('/e', function () {
+    return view('edit');
+});
