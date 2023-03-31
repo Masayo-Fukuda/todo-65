@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+< lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create</title>
+    <link rel="" href="{{ 'css/create.css' }}">
 </head>
 <body>
     
 </body>
-</html>
 
-    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+
+    <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-        <div class="form-group">
+        <div class="">
             <label>タイトル</label>
-            <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title">
+            <input type="text" class="" placeholder="タイトルを入力して下さい" name="title">
         </div>
-        <div class="form-group">
+        <div class="">
             <label>内容</label>
-            <textarea class="form-control" placeholder="内容" rows="5" name="body">
+            <textarea class="" placeholder="内容" rows="5" name="contents">
             </textarea>
         </div>
-        <div class="form-group">
+        <div class="">
             <label>画像ファイル</label>
             <input type="file">
         </div>
 
-        <button type="submit" class="btn btn-primary">作成</button>
+        <button type="submit" class="">作成</button>
     </form>
 </body>
+
 </html>
