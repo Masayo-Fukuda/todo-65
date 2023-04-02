@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Comment extends Model
 {
     use HasFactory;
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
-    public function comments()
+    public function task()
     {
-        return $this->hasMany('App\Comment');
+        return $this->belongsTo('App\Task');
     }
 }

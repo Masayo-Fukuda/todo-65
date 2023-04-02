@@ -36,6 +36,11 @@ Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'store'])->nam
 Route::put('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
 
+//コメント機能
+Route::get('/comments/create/{task_id}',[App\Http\Controllers\CommentController::class, 'create'])->name('comments.create');
+Route::post('/comments/store',[App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+Route::get('/comments/{id}', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index');
+
 //テスト用
 Route::get('/c', function () {
     return view('create');
