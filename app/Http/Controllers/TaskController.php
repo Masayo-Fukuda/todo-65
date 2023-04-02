@@ -10,21 +10,46 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    //
+    
+
     public function index(Request $request)
     {
-        $tasks = Task::latest()->get();
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+    
+        $userId = Auth::user()->id;
+        $tasks = Task::where('user_id', $userId)->latest()->get();
         $keyword = $request->input('keyword');
     
         if (!empty($keyword)) {
-            $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
-                ->orWhere('contents', 'LIKE', "%{$keyword}%")
+            $tasks = Task::where('user_id', $userId)
+                ->where(function($query) use ($keyword) {
+                    $query->where('title', 'LIKE', "%{$keyword}%")
+                        ->orWhere('contents', 'LIKE', "%{$keyword}%");
+                })
                 ->latest()
                 ->get();
         }
     
         return view('index', compact('tasks', 'keyword'));
     }
+    
+
+    // public function index(Request $request)
+    // {
+    //     $tasks = Task::latest()->get();
+    //     $keyword = $request->input('keyword');
+    
+    //     if (!empty($keyword)) {
+    //         $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
+    //             ->orWhere('contents', 'LIKE', "%{$keyword}%")
+    //             ->latest()
+    //             ->get();
+    //     }
+    
+    //     return view('index', compact('tasks', 'keyword'));
+    // }
     
     public function create()
     {
