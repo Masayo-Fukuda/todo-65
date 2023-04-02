@@ -3,19 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\task;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class TaskController extends Controller
 {
-    //
-    public function index()
-    {
-        $tasks = Task::all();
-        return view('index', ['tasks' => $tasks ]);
-    }
+    
 
+    public function index(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+    
+        $userId = Auth::user()->id;
+        $tasks = Task::where('user_id', $userId)->latest()->get();
+        $keyword = $request->input('keyword');
+    
+        if (!empty($keyword)) {
+            $tasks = Task::where('user_id', $userId)
+                ->where(function($query) use ($keyword) {
+                    $query->where('title', 'LIKE', "%{$keyword}%")
+                        ->orWhere('contents', 'LIKE', "%{$keyword}%");
+                })
+                ->latest()
+                ->get();
+        }
+    
+        return view('index', compact('tasks', 'keyword'));
+    }
+    
+
+    // public function index(Request $request)
+    // {
+    //     $tasks = Task::latest()->get();
+    //     $keyword = $request->input('keyword');
+    
+    //     if (!empty($keyword)) {
+    //         $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
+    //             ->orWhere('contents', 'LIKE', "%{$keyword}%")
+    //             ->latest()
+    //             ->get();
+    //     }
+    
+    //     return view('index', compact('tasks', 'keyword'));
+    // }
+    
     public function create()
     {
         return view('create');
@@ -72,4 +107,25 @@ class TaskController extends Controller
 
         return redirect()->route('tasks.index');
     }
+
+
+
+
+    // function orderby()
+    // {
+    //     $tasks = Task::latest();
+
+    //     return view('index', [
+    //         'tasks' => $tasks
+    //     ]);
+    // }
+
+    function search(Request $request)
+    {
+    $keyword = $request->input('keyword');
+    $tasks = Task::where('title', 'LIKE', "%{$keyword}%")->get();
+    return view('index', ['tasks'=>$tasks]);
+    }
+
+
 }
