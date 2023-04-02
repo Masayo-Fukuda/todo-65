@@ -83,14 +83,14 @@ class TaskController extends Controller
 
 
 
-    function orderby()
-    {
-        $tasks = Task::latest();
+    // function orderby()
+    // {
+    //     $tasks = Task::latest();
 
-        return view('index', [
-            'tasks' => $tasks
-        ]);
-    }
+    //     return view('index', [
+    //         'tasks' => $tasks
+    //     ]);
+    // }
 
     function search(Request $request)
     {
