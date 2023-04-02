@@ -32,8 +32,25 @@
                         @method('delete')
                         <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
                     </form>
+                    {{-- コメント系 --}}
                     <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">コメントする</button>
                     <a href="{{ route('comments.index', $task->id) }}">コメントを見る</a>
+                    {{-- ブックマークの追加・削除ボタン --}}
+                    @if ($task->bookmarkedBy(auth()->user()))
+                    {{-- ブックマーク済みの場合 --}}
+                    <form action="{{ route('bookmarks.destroy', $task->bookmarkByUser(auth()->user())) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">ブックマークから削除する</button>
+                    </form>
+                    @else
+                    {{-- ブックマークされていない場合 --}}
+                    <form action="{{ route('bookmarks.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="task_id" value="{{ $task->id }}">
+                    <button type="submit">ブックマークする</button>
+                    </form>
+                    @endif
                 </div>
             {{-- @endif --}}
         @endforeach
