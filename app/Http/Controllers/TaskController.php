@@ -11,15 +11,20 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
         $tasks = Task::latest()->get();
-        
-        return view('index', ['tasks' => $tasks ]);
-
-
+        $keyword = $request->input('keyword');
+    
+        if (!empty($keyword)) {
+            $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('contents', 'LIKE', "%{$keyword}%")
+                ->latest()
+                ->get();
+        }
+    
+        return view('index', compact('tasks', 'keyword'));
     }
-
     public function create()
     {
         return view('create');
