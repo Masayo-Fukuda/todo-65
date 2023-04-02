@@ -32,6 +32,8 @@
                         @method('delete')
                         <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
                     </form>
+                    <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">コメントする</button>
+                    <a href="{{ route('comments.index', $task->id) }}">コメントを見る</a>
                 </div>
             {{-- @endif --}}
         @endforeach
