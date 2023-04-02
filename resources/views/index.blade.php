@@ -16,7 +16,7 @@
     </form>
 
     @foreach ($tasks as $task )
-    <div >
+    <div>
         <h1>タスクの題名: {{ $task->title }}</h1>
         <p>タスクの説明文:{{ $task->contents }}</p>
         {{-- 画像 --}}
@@ -38,10 +38,9 @@
 
     <div>
         <a href="{{ route('tasks.create') }}" >
-            新規投稿
+        新規投稿
         </a>    
     </div>
-
 </body>
 
 </html>

@@ -34,6 +34,9 @@ Route::put('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'update'])
 
 Route::delete('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
 
+
+Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'search'])->name('tasks.search');
+
 //テスト用
 Route::get('/c', function () {
     return view('create');

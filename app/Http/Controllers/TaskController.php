@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\task;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -13,8 +13,11 @@ class TaskController extends Controller
     //
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::latest()->get();
+        
         return view('index', ['tasks' => $tasks ]);
+
+
     }
 
     public function create()
@@ -71,14 +74,14 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-   
+
 
 
     function orderby()
     {
-        $tasks = Task::orderBy('created_at', 'desc')->get();
+        $tasks = Task::latest();
 
-        return view('tasks.index', [
+        return view('index', [
             'tasks' => $tasks
         ]);
     }
@@ -87,7 +90,7 @@ class TaskController extends Controller
     {
     $keyword = $request->input('keyword');
     $tasks = Task::where('title', 'LIKE', "%{$keyword}%")->get();
-    return view('tasks.index', compact('tasks'));
+    return view('index', ['tasks'=>$tasks]);
     }
 
 
