@@ -25,6 +25,7 @@ class TaskController extends Controller
     
         return view('index', compact('tasks', 'keyword'));
     }
+    
     public function create()
     {
         return view('create');
