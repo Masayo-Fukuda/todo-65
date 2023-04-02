@@ -10,7 +10,7 @@
 <body>
     <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('put')  
+        @method('put')
         <div>
             <label>タイトル</label>
             <input type="text" class="form-control" value="{{ $task->title }}" name="title">
@@ -29,6 +29,5 @@
             <button type="submit">変更</button>
         </div>
     </form>
-        
 </body>
 </html>
