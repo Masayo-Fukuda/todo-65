@@ -97,8 +97,8 @@
             <div class=main>
                 <a href="{{ route('tasks.create') }}" >新規投稿</a>    
             </div>
+            
+            {{ $tasks->links() }}
     </main>
-
-{{ $tasks->links() }}
     </body>
 </html>

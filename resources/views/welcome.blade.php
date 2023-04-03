@@ -38,15 +38,38 @@
             <div class="img">
                 <img src="https://cdn.pixabay.com/photo/2017/05/15/23/48/survey-2316468__480.png" alt="">
             </div>
-            <div>
-                <a class="button" href="{{ route('register') }}">
-                <span>Create New Acount</span>
-                </a>
-            </div>
-            <div class="log-in">
-                <a href="{{ route('login') }}">Do you already have an account? login</a>
-            </div>
 
+            @if (Route::has('login'))
+            <div>
+                @auth
+                    <div>
+                        <a class="button" href="{{ url('/tasks') }}">
+                            <span>投稿一覧へ</span>
+                        </a>
+                    </div>
+                    <div class="log-out">
+                        <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                        </form>
+                    </div>
+                @else
+                    <div>
+                        <a class="button" href="{{ route('register') }}">
+                        <span>Create New Acount</span>
+                        </a>
+                    </div>
+                        @if (Route::has('login'))
+                            <div class="log-in">
+                                <a href="{{ route('login') }}">Do you already have an account? login</a>
+                            </div>
+                        @endif
+                @endauth
+            @endif
         </section>
     </main>
     
