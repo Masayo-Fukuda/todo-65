@@ -50,5 +50,4 @@ Route::get('/mypage/{id}', [App\Http\Controllers\MypageController::class, 'show'
 
 // Route::get('/tasks/create',[App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
 // Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
-=======
-Route::delete('/bookmarks/{bookmark}', [App\Http\Controllers\BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
+// Route::delete('/bookmarks/{bookmark}', [App\Http\Controllers\BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
