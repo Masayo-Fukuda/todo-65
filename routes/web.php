@@ -50,5 +50,10 @@ Route::get('/e', function () {
     return view('edit');
 });
 
+// bookmark
+Route::post('/bookmarks', [App\Http\Controllers\BookmarksController::class, 'store'])->name('bookmarks.store');
+Route::delete('/bookmarks/{bookmark}', [App\Http\Controllers\BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
+
+
 // Route::get('/tasks/create',[App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
 // Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
