@@ -47,5 +47,8 @@ button[type="submit"] {
     cursor: pointer; /* カーソルの形状をポインターに指定 */
 }
 
+#error{
+    color: rgb(150, 0, 0);
+}
 
 

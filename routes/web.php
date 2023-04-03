@@ -22,10 +22,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
-// IDに基づく詳細ページのルート
-Route::get('/tasks/{id}/edit',[App\Http\Controllers\TaskController::class, 'edit'])->name('tasks.edit');
-
 // タスクの検索
 Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'search'])->name('tasks.search');
 
@@ -33,6 +29,7 @@ Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'search'])->na
 Route::get('/tasks',[App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/create',[App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
 Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
+Route::get('/tasks/{id}/edit',[App\Http\Controllers\TaskController::class, 'edit'])->name('tasks.edit');
 Route::put('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{id}',[App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
 
@@ -41,19 +38,6 @@ Route::get('/comments/create/{task_id}',[App\Http\Controllers\CommentController:
 Route::post('/comments/store',[App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 Route::get('/comments/{id}', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index');
 
-//テスト用
-Route::get('/c', function () {
-    return view('create');
-});
-
-Route::get('/e', function () {
-    return view('edit');
-});
-
 // bookmark
 Route::post('/bookmarks', [App\Http\Controllers\BookmarksController::class, 'store'])->name('bookmarks.store');
 Route::delete('/bookmarks/{bookmark}', [App\Http\Controllers\BookmarksController::class, 'destroy'])->name('bookmarks.destroy');
-
-
-// Route::get('/tasks/create',[App\Http\Controllers\TaskController::class, 'create'])->name('tasks.create');
-// Route::post('/tasks',[App\Http\Controllers\TaskController::class, 'store'])->name('tasks.store');
