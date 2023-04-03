@@ -25,7 +25,7 @@ class TaskController extends Controller
                 });
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->simplepaginate(5);
         return view('index', compact('tasks', 'keyword'));
     }
     
