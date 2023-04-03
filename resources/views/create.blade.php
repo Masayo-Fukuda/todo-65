@@ -10,8 +10,6 @@
 <body>
     
 </body>
-
-
     <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
     <div class="parent"></div>
@@ -40,9 +38,10 @@
         </div>
         <div class="container">
             <button type="submit" class="">作成</button>
-            
         </div>
-        
+        <a href="{{ url()->previous() }}" class="btn btn-primary">
+            <div class="back">戻る</div>
+        </a>
     </div>
     </form>
 </body>
