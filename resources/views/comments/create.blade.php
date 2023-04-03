@@ -12,6 +12,7 @@
   <h1>タスクの題名: {{ $tasks->title }}</h1>
   <p>タスクの説明文:{{ $tasks->contents }}</p>
   <img src="{{ asset('storage/image/'.$tasks->image_at) }}" width="200">
+  <hr>
 
   <form action="{{ route('comments.store') }}"  method="post">
     @csrf
