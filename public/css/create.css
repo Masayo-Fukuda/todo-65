@@ -3,7 +3,48 @@ body {
     font-family: Arial, sans-serif; /* フォントの設定 */
     background-color: #f5f5f5; /* 背景色の設定 */
 }
-
+* {
+    padding: 0;
+    margin: 0;
+  }
+  
+  
+  header {
+    height: 50px;
+    width: 100%;
+    background: #4798bb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .left {
+    margin-left: 90px;
+  }
+  
+  .left > a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .left > a:hover{
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .right {
+    margin-right: 90px;
+  }
+  
+  .right > a{
+    text-decoration: none;
+    color: white;
+    margin: 10px;
+  }
+  
+  .right > a:hover{
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
 form {
     max-width: 600px; /* フォームの最大幅を指定 */
     margin: 0 auto; /* フォームを中央に寄せる */

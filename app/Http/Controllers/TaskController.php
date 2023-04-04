@@ -10,46 +10,84 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    
-
     public function index(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-    
-        $userId = Auth::user()->id;
-        $tasks = Task::where('user_id', $userId)->latest()->get();
+        $tasks = Task::latest()->simplepaginate(5);
         $keyword = $request->input('keyword');
     
         if (!empty($keyword)) {
-            $tasks = Task::where('user_id', $userId)
-                ->where(function($query) use ($keyword) {
-                    $query->where('title', 'LIKE', "%{$keyword}%")
-                        ->orWhere('contents', 'LIKE', "%{$keyword}%");
-                })
+            $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('contents', 'LIKE', "%{$keyword}%")
                 ->latest()
-                ->get();
+                ->simplepaginate(5);
         }
     
         return view('index', compact('tasks', 'keyword'));
     }
-    
 
     // public function index(Request $request)
     // {
-    //     $tasks = Task::latest()->get();
+    //     if (!Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
+    //     $userId = Auth::user()->id;
     //     $keyword = $request->input('keyword');
+    //     $tasks = Task::where('user_id', $userId)
+    //         ->when($keyword, function ($query, $keyword) {
+    //             return $query->where(function ($query) use ($keyword) {
+    //                 $query->where('title', 'LIKE', "%{$keyword}%")
+    //                     ->orWhere('contents', 'LIKE', "%{$keyword}%");
+    //             });
+    //         })
+    //         ->orderBy('created_at', 'desc')
+    //         ->simplepaginate(5);
+    //     return view('index', compact('tasks', 'keyword'));
+    // }
+    
+
+
+
+    // public function index(Request $request)
+    // {
+    //     $keyword = $request->input('keyword');
+    //     $tasks = Task::query()
+    //         ->where('title', 'LIKE', "%{$keyword}%")
+    //         ->orWhere('contents', 'LIKE', "%{$keyword}%")
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate(5);
+    
+    //     return view('index', compact('tasks', 'keyword'));
+    // }
+
+
+
+    // {
+    //     if (!Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
+    
+    //     $userId = Auth::user()->id;
+    //     $tasks = Task::where('user_id', $userId)->latest()->get();
+    //     $keyword = $request->input('keyword');
+    //     $tasks = task::paginate(5);
     
     //     if (!empty($keyword)) {
-    //         $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
-    //             ->orWhere('contents', 'LIKE', "%{$keyword}%")
+    //         $tasks = Task::where('user_id', $userId)
+    //             ->where(function($query) use ($keyword) {
+    //                 $query->where('title', 'LIKE', "%{$keyword}%")
+    //                     ->orWhere('contents', 'LIKE', "%{$keyword}%");
+    //             })
     //             ->latest()
     //             ->get();
     //     }
     
     //     return view('index', compact('tasks', 'keyword'));
     // }
+    
+
+
+
+
     
     public function create()
     {
@@ -77,10 +115,15 @@ class TaskController extends Controller
     }
 
     public function edit($id)
-    {
-        $task = Task::find($id);
-        return view('edit', ['task' => $task]);
+{
+    $task = Task::findOrFail($id);
+
+    if ($task->user_id !== Auth::id()) {
+        abort(403); // アクセス拒否
     }
+
+    return view('edit', compact('task'));
+}
 
     function update(Request $request, $id)
     {
@@ -106,11 +149,16 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    function destroy($id)
+    public function destroy($id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
+    
+        if ($task->user_id !== Auth::id()) {
+            abort(403); // アクセス拒否
+        }
+    
         $task->delete();
-
+    
         return redirect()->route('tasks.index');
     }
 

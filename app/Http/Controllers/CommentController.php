@@ -12,7 +12,7 @@ class CommentController extends Controller
     public function create($task_id)
     {
         $tasks = Task::find($task_id);
-        return view('comments.create', ['tasks'=>$tasks]);
+        return view('comments.create', compact('tasks'));
     }
 
     public function store(Request $request)
@@ -28,6 +28,6 @@ class CommentController extends Controller
     public function index($id)
     {
         $comments = Comment::where('task_id', $id)->get();
-        return view('comments.index', ['comments'=>$comments]);
+        return view('comments.index', compact('comments'));
     }
 }
