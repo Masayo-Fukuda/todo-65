@@ -10,24 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
-    public function index(Request $request)
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-        $userId = Auth::user()->id;
-        $keyword = $request->input('keyword');
-        $tasks = Task::where('user_id', $userId)
-            ->when($keyword, function ($query, $keyword) {
-                return $query->where(function ($query) use ($keyword) {
-                    $query->where('title', 'LIKE', "%{$keyword}%")
-                        ->orWhere('contents', 'LIKE', "%{$keyword}%");
-                });
-            })
-            ->orderBy('created_at', 'desc')
-            ->simplepaginate(5);
-        return view('index', compact('tasks', 'keyword'));
-    }
+    // public function index(Request $request)
+    // {
+    //     if (!Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
+    //     $userId = Auth::user()->id;
+    //     $keyword = $request->input('keyword');
+    //     $tasks = Task::where('user_id', $userId)
+    //         ->when($keyword, function ($query, $keyword) {
+    //             return $query->where(function ($query) use ($keyword) {
+    //                 $query->where('title', 'LIKE', "%{$keyword}%")
+    //                     ->orWhere('contents', 'LIKE', "%{$keyword}%");
+    //             });
+    //         })
+    //         ->orderBy('created_at', 'desc')
+    //         ->simplepaginate(5);
+    //     return view('index', compact('tasks', 'keyword'));
+    // }
     
 
 
@@ -70,20 +70,20 @@ class TaskController extends Controller
     // }
     
 
-    // public function index(Request $request)
-    // {
-    //     $tasks = Task::latest()->get();
-    //     $keyword = $request->input('keyword');
+    public function index(Request $request)
+    {
+        $tasks = Task::latest()->get();
+        $keyword = $request->input('keyword');
     
-    //     if (!empty($keyword)) {
-    //         $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
-    //             ->orWhere('contents', 'LIKE', "%{$keyword}%")
-    //             ->latest()
-    //             ->get();
-    //     }
+        if (!empty($keyword)) {
+            $tasks = Task::where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('contents', 'LIKE', "%{$keyword}%")
+                ->latest()
+                ->get();
+        }
     
-    //     return view('index', compact('tasks', 'keyword'));
-    // }
+        return view('index', compact('tasks', 'keyword'));
+    }
     
     public function create()
     {
