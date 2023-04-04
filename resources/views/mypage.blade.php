@@ -53,7 +53,7 @@
                             <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
                                 @csrf
                                 @method('delete')
-                                <input type='submit' value='Delete'  onclick='return confirm("Do you really want to delete this?");'>
+                                <input id="delete" type='submit' value='Delete'  onclick='return confirm("Do you really want to delete this?");'>
                             </form>
                             
                             {{-- ブックマークの追加・削除ボタン --}}
