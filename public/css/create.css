@@ -78,9 +78,10 @@ input[type="file"] {
 }
 
 button[type="submit"] {
+    text-align: center;
     display: inline-block; /* ボタンをインラインブロック要素に指定 */
     padding: 10px 20px; /* ボタンの内側の余白を指定 */
-    background-color: #4caf50; /* ボタンの背景色を指定 */
+    background-color: #2c87ed; /* ボタンの背景色を指定 */
     color: #fff; /* ボタンのテキスト色を指定 */
     border: none; /* 枠線を削除 */
     border-radius: 5px; /* 角丸の設定 */
@@ -90,6 +91,18 @@ button[type="submit"] {
 
 #error{
     color: rgb(150, 0, 0);
+}
+
+.back{
+    text-align: center;
+    display: inline-block; /* ボタンをインラインブロック要素に指定 */
+    padding: 10px 20px; /* ボタンの内側の余白を指定 */
+    background-color: gray; /* ボタンの背景色を指定 */
+    color: white; /* ボタンのテキスト色を指定 */
+    border: none; /* 枠線を削除 */
+    border-radius: 5px; /* 角丸の設定 */
+    font-size: 16px; /* ボタンのフォントサイズを指定 */
+    cursor: pointer; /* カーソルの形状をポインターに指定 */
 }
 
 
