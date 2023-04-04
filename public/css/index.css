@@ -41,17 +41,22 @@ header {
 }
 /* ここまでヘッダーに対応してる部分 */
 
-
-
-
 main {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
-  
+
+#title {
+  text-decoration: none;
+  color: #333;
+}
+#title:hover {
+  background-color: #4798bb;
+}
+
 .main {
     margin: 20px;
     padding: 20px;
@@ -84,7 +89,7 @@ main {
     margin: 10px 0;
   }
   
-  /* a , input , button {
+.main > a , input , button {
     color: #333;
     text-decoration: none;
     border: 1px solid #333;
@@ -93,10 +98,12 @@ main {
     margin: 10px 0;
     background-color: #ffffff;
   }
-  a:hover , input:hover ,button:hover {
-    background-color: #333;
-    color: #fff;
-  } */
 
-  
-  
+.main > a:hover , input:hover ,button:hover {
+    background-color: #4798bb;
+    color: #fff;
+  }
+
+form {
+  display: inline;
+}
