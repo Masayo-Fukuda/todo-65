@@ -13,11 +13,10 @@ class MypageController extends Controller
 {
     public function show($id)
     {
-        // $userId = Auth::user()->id;
         $tasks = Task::where('user_id', $id)->get();
 
         $bookmarks = Bookmarks::where('user_id', $id)->get();
-        // dd($bookmarks);
+
         return view('mypage', compact('tasks', 'bookmarks'));
 
     }

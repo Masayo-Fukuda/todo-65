@@ -3,7 +3,6 @@
   margin: 0;
 }
 
-
 header {
   height: 50px;
   width: 100%;
@@ -52,9 +51,6 @@ main {
 #title {
   text-decoration: none;
   color: #333;
-}
-#title:hover {
-  background-color: #4798bb;
 }
 
 .main {

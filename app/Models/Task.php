@@ -11,12 +11,12 @@ class Task extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany(comment::class);
     }
 
     public function bookmarkedBy($user)

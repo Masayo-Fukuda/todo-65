@@ -16,7 +16,6 @@
                 </a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">Tasks List</a>
                 @guest
                     @if (Route::has('login'))
                         <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -26,6 +25,7 @@
                         <a href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 @else
+                    <a href="{{ route('tasks.index') }}">Tasks List</a>
                     <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}'s Page
                     </a>
@@ -83,11 +83,11 @@
             {{-- @endif --}}
         @endforeach
 
+        {{ $tasks->links() }}
+
             <div class=main>
                 <a href="{{ route('tasks.create') }}" >Creat New Task</a>    
             </div>
-            
-            {{ $tasks->links() }}
     </main>
     </body>
 </html>

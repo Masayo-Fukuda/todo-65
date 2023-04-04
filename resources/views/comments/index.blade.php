@@ -31,8 +31,6 @@
   <div class=main>
     <p class=title>コメント一覧</p>
 </div>
-  {{-- <h1>タスクの題名: {{ $task->title }}</h1>
-  <p>タスクの説明文:{{ $task->contents }}</p> --}}
   <div class="main">
     @foreach($comments as $comment)
       <div>

@@ -9,23 +9,21 @@
     </head>
 
     <body>
-      
         <header>
             <div class="left">
                 <a href="{{ url('/') }}">
-                        ToDo</a>
+                    ToDo
+                </a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">Tasks List</a>
                 @guest
                     @if (Route::has('login'))
                     <a  href="{{ route('login') }}">{{ __('Login') }}</a>
                     @endif
-    
+
                     @if (Route::has('register'))
                     <a  href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
-    
                 @else
                 <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}'s Page</a>
@@ -65,17 +63,16 @@
                             @method('DELETE')
                             <button type="submit">Delete from Bookmarks</button>
                             </form>
-                            @else
+                        @else
                             {{-- ブックマークされていない場合 --}}
                             <form action="{{ route('bookmarks.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="task_id" value="{{ $task->id }}">
                             <button type="submit">Add to Bookmarks</button>
                             </form>
-                            @endif
-                        </div>
+                        @endif
                     </div>
-                {{-- @endif --}}
+                </div>
             @endforeach
 
             <div class="main">
@@ -83,15 +80,17 @@
             </div>
 
             <div class="main">
-            @foreach ($bookmarks as $bookmark)
-            {{-- 投稿者、題名、内容、写真 --}}
+                @foreach ($bookmarks as $bookmark)
                     <div>
                         <p>User：{{ $bookmark->user->name }}</p>
                         <p>Title：{{ $bookmark->task->title }}</p>
                         <p>Content：{{ $bookmark->task->contents }}</p>
+
                         <img src="{{ asset('storage/image/'.$bookmark->task->image_at)}}" alt=""> 
-                    </div>   
-            @endforeach
+                        <hr>
+                        <br>
+                    </div>
+                @endforeach
             </div>
         </main>
     </body>

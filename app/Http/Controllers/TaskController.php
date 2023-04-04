@@ -23,6 +23,8 @@ class TaskController extends Controller
         }
     
         return view('index', compact('tasks', 'keyword'));
+
+       
     }
 
     // public function index(Request $request)
@@ -162,24 +164,10 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-
-
-
-    // function orderby()
-    // {
-    //     $tasks = Task::latest();
-
-    //     return view('index', [
-    //         'tasks' => $tasks
-    //     ]);
-    // }
-
     function search(Request $request)
     {
     $keyword = $request->input('keyword');
     $tasks = Task::where('title', 'LIKE', "%{$keyword}%")->get();
     return view('index', ['tasks'=>$tasks]);
     }
-
-
 }
