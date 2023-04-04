@@ -16,7 +16,7 @@
                         ToDo</a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+                <a href="{{ route('tasks.index') }}">投稿一覧</a>
                 @guest
                     @if (Route::has('login'))
                     <a  href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -55,7 +55,7 @@
                             <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
                                 @csrf
                                 @method('delete')
-                                <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
+                                <input id="delete" type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
                             </form>
                             
                             {{-- ブックマークの追加・削除ボタン --}}

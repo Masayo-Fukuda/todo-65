@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+                <a href="{{ route('tasks.index') }}">投稿一覧</a>
                 @guest
                     @if (Route::has('login'))
                         <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -83,11 +83,11 @@
             {{-- @endif --}}
         @endforeach
 
+        {{ $tasks->links() }}
+
             <div class=main>
                 <a href="{{ route('tasks.create') }}" >新規投稿</a>    
             </div>
-            
-            {{ $tasks->links() }}
     </main>
     </body>
 </html>
