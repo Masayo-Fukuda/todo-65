@@ -37,10 +37,11 @@
         <p>User:{{ $comment->user->name }}</p>
         <br>
         <p>Comment<br>{{ $comment->body }}</p>
+        <hr>
       </div>
     @endforeach
 </div>
-  <a class="button"　href="{{ route('tasks.index') }}">Back to Tasks List</a>
+  <a class="button" href="{{ route('tasks.index') }}">Back to Tasks List</a>
 </main>
 </body>
 </html>
