@@ -14,30 +14,26 @@
     <header>
         <div class="left">
             <a href="{{ url('/') }}">
-                    ToDo</a>
+                ToDo
+            </a>
         </div>
         <div class="right">
-            {{-- <ul>
-                <li><a href="#">要素1</a></li>
-                <li><a href="#">要素2</a></li>
-                <li><a href="#">要素3</a></li>
-            </ul> --}}
+            <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
             @guest
                 @if (Route::has('login'))
-                <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a href="{{ route('login') }}">{{ __('Login') }}</a>
                 @endif
 
                 @if (Route::has('register'))
-                <a  href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
-
             @else
-            <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-            さんのマイページ</a>
-        @endguest
+                <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}さんのマイページ
+                </a>
+            @endguest
         </div>
-        </header>
+    </header>
 
 
 

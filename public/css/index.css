@@ -33,6 +33,7 @@ header {
 .right > a{
   text-decoration: none;
   color: white;
+  margin: 10px;
 }
 
 .right > a:hover{
