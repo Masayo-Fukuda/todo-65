@@ -25,8 +25,8 @@
                 <a  href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
-                <a href="{{ route('tasks.index') }}">投稿一覧</a>
-                <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}さんのマイページ
+                <a href="{{ route('tasks.index') }}">Tasks List</a>
+                <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}'s Page
                 </a>
             @endguest
         </div>
