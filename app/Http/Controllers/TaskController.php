@@ -115,10 +115,15 @@ class TaskController extends Controller
     }
 
     public function edit($id)
-    {
-        $task = Task::find($id);
-        return view('edit', ['task' => $task]);
+{
+    $task = Task::findOrFail($id);
+
+    if ($task->user_id !== Auth::id()) {
+        abort(403); // アクセス拒否
     }
+
+    return view('tasks.edit', compact('task'));
+}
 
     function update(Request $request, $id)
     {
@@ -138,11 +143,16 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    function destroy($id)
+    public function destroy($id)
     {
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
+    
+        if ($task->user_id !== Auth::id()) {
+            abort(403); // アクセス拒否
+        }
+    
         $task->delete();
-
+    
         return redirect()->route('tasks.index');
     }
 
