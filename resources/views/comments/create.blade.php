@@ -45,6 +45,9 @@
         @csrf
         <input type="hidden" name="task_id" value="{{ $tasks->id }}">
         <textarea name="body" cols="50" rows="3" placeholder="内容"></textarea>
+        @if ($errors->has('body'))
+              <p id="error">ERROR!{{$errors->first('body')}}</p>
+            @endif
         <br>
         <button type="submit">コメントする</button>
       </form>

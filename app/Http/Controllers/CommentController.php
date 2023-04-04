@@ -17,6 +17,10 @@ class CommentController extends Controller
 
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'body' => ['required', 'max:140'],
+        ]);
+
         $comments = new Comment;
         $comments -> body = $request ->body;
         $comments -> user_id = Auth::id();

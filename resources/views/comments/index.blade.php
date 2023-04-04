@@ -37,10 +37,11 @@
         <p>投稿者:{{ $comment->user->name }}</p>
         <br>
         <p>コメント内容<br>{{ $comment->body }}</p>
+        <hr>
       </div>
     @endforeach
 </div>
-  <a href="{{ route('tasks.index') }}">投稿一覧へ戻る</a>
+  <a class="button" href="{{ route('tasks.index') }}">投稿一覧へ戻る</a>
 </main>
 </body>
 </html>
