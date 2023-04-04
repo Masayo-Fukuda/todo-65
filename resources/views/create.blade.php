@@ -31,6 +31,8 @@
             @endguest
         </div>
     </header>
+
+    <div class="main">新規投稿</div>
     <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
     <div class="parent"></div>

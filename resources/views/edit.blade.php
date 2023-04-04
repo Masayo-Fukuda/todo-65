@@ -32,6 +32,7 @@
         </div>
     </header>
     
+    <div class="main">編集</div>
     <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
