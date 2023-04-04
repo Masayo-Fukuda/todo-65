@@ -9,33 +9,31 @@
 </head>
     
 <body>
-    <header id="header">
-        <div class="container">
-            <h3 class="site-title">
-                <a href="./">ToDo</a>
-            </h3>
-            <div>
-                <ul class="nav">
-                @if (Route::has('login'))          
-                        @auth
-                            <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                        @else
-                            <li class="nav-item">    
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Login</a>
-                            </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">    
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                        @endauth    
+    <header>
+        <div class="left">
+            <a href="{{ url('/') }}">
+                ToDo
+            </a>
+        </div>
+        <div class="right">
+            @guest
+                @if (Route::has('login'))
+                <a  href="{{ route('login') }}">{{ __('Login') }}</a>
                 @endif
-                </ul>
-            </div>
+
+                @if (Route::has('register'))
+                <a  href="{{ route('register') }}">{{ __('Register') }}</a>
+                @endif
+            @else
+                <a href="{{ route('tasks.index') }}">投稿一覧</a>
+                <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}さんのマイページ
+                </a>
+            @endguest
         </div>
     </header>
     <main>
         <section class="top">
-            <div class="img">
+            <div class="logo">
                 <img src="https://cdn.pixabay.com/photo/2017/05/15/23/48/survey-2316468__480.png" alt="">
             </div>
 
