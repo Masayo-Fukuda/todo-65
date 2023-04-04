@@ -32,7 +32,7 @@
         </div>
     </header>
 
-    <div class="main">新規投稿</div>
+    <div class="main">Create New Task</div>
     <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
     <div class="parent"></div>
@@ -52,7 +52,7 @@
             @endif
         </div>
         <div class="container">
-            <label>Image file（Muximum 2MB）</label>
+            <label>Image file（Maximum 2MB）</label>
             <br>
             <input type="file" name="image_at">
             @if ($errors->has('image_at'))

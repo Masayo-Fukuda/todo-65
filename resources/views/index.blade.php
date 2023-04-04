@@ -61,8 +61,8 @@
                 <br>
                     {{-- </form> --}}
                     {{-- コメント系 --}}
-                    <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">Comment</button>
-                    <a href="{{ route('comments.index', $task->id) }}">See Comments</a>
+                    <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">Add a Comment</button>
+                    <a href="{{ route('comments.index', $task->id) }}">View Comments</a>
                     {{-- ブックマークの追加・削除ボタン --}}
                     @if ($task->bookmarkedBy(auth()->user()))
                     {{-- ブックマーク済みの場合 --}}

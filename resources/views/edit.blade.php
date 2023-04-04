@@ -32,7 +32,7 @@
         </div>
     </header>
     
-    <div class="main">編集</div>
+    <div class="main">Edit</div>
     <form action="{{ route('tasks.update', $task->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
@@ -52,7 +52,7 @@
             @endif
         </div>
         <div class="container">
-            <label>Image file（Muximum 2MB）</label>
+            <label>Image file（Maximum 2MB）</label>
             <br>
             <img src="{{ asset('storage/image/'.$task->image_at) }}" width="200">
             <br>
