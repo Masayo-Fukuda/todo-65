@@ -44,7 +44,7 @@
                 @auth
                     <div>
                         <a class="button" href="{{ url('/tasks') }}">
-                            <span>投稿一覧へ</span>
+                            <span>Tasks List</span>
                         </a>
                     </div>
                     <div class="log-out">

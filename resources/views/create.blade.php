@@ -15,7 +15,7 @@
             </a>
         </div>
         <div class="right">
-            <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+            <a href="{{ route('tasks.index') }}">Tasks List</a>
             @guest
                 @if (Route::has('login'))
                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -26,7 +26,7 @@
                 @endif
             @else
                 <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}さんのマイページ
+                    {{ Auth::user()->name }}'s Page
                 </a>
             @endguest
         </div>
@@ -35,22 +35,22 @@
             @csrf
     <div class="parent"></div>
         <div class="container">
-            <label class="aiueo">タイトル（30文字以内）</label>
-            <input type="text" class="" placeholder="タイトルを入力して下さい" name="title">
+            <label class="aiueo">Title （less than 30 characters）</label>
+            <input type="text" class="" placeholder="Enter Title" name="title">
             @if ($errors->has('title'))
               <p id="error">ERROR!{{$errors->first('title')}}</p>
             @endif
         </div>
         <div class="container">
-            <label>内容（140文字以内）</label>
+            <label>Content（less than 140 characters）</label>
             <br>
-            <textarea class="" placeholder="内容" rows="5" name="contents"></textarea>
+            <textarea class="" placeholder="Enter Content" rows="5" name="contents"></textarea>
             @if ($errors->has('contents'))
               <p id="error">ERROR!{{$errors->first('contents')}}</p>
             @endif
         </div>
         <div class="container">
-            <label>画像ファイル（2MB以内）</label>
+            <label>Image file（Muximum 2MB）</label>
             <br>
             <input type="file" name="image_at">
             @if ($errors->has('image_at'))
@@ -58,10 +58,10 @@
             @endif
         </div>
         <div class="container">
-            <button type="submit" class="">作成</button>
+            <button type="submit" class="">Create</button>
         </div>
         <a href="{{ url()->previous() }}" class="btn btn-primary">
-            <div class="back">戻る</div>
+            <div class="back">Back</div>
         </a>
     </div>
     </form>

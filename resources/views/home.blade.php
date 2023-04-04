@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                    <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+                    <a href="{{ route('tasks.index') }}">Tasks List</a>
                 </div>
             </div>
         </div>

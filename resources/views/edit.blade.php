@@ -15,7 +15,7 @@
             </a>
         </div>
         <div class="right">
-            <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+            <a href="{{ route('tasks.index') }}">Tasks List</a>
             @guest
                 @if (Route::has('login'))
                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -26,7 +26,7 @@
                 @endif
             @else
                 <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}さんのマイページ
+                    {{ Auth::user()->name }}'s Page
                 </a>
             @endguest
         </div>
@@ -36,14 +36,14 @@
         @csrf
         @method('put')
         <div>
-            <label>タイトル（30文字以内）</label>
+            <label>Title （less than 30 characters）</label>
             <input type="text" class="form-control" value="{{ $task->title }}" name="title">
             @if ($errors->has('title'))
               <p id="error">ERROR!{{$errors->first('title')}}</p>
             @endif
-        </div>
+        </div><br>
         <div class="container">
-            <label>内容（140文字以内）</label>
+            <label>Content（less than 140 characters）</label>
             <br>
             <textarea class="form-control" rows="5" name="contents">{{ $task->contents }}</textarea>
             @if ($errors->has('contents'))
@@ -51,7 +51,7 @@
             @endif
         </div>
         <div class="container">
-            <label>画像ファイル（2MB以内）</label>
+            <label>Image file（Muximum 2MB）</label>
             <br>
             <img src="{{ asset('storage/image/'.$task->image_at) }}" width="200">
             <br>
@@ -61,10 +61,10 @@
             @endif
         </div>
         <div class="container">
-            <button type="submit">変更</button>
+            <button type="submit">Edit</button>
         </div>
         <a href="{{ url()->previous() }}" class="btn btn-primary">
-            <div class="back">戻る</div>
+            <div class="back">Back</div>
         </a>
     </form>
 </body>

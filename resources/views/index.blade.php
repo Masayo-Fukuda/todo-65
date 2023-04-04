@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+                <a href="{{ route('tasks.index') }}">Tasks List</a>
                 @guest
                     @if (Route::has('login'))
                         <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -27,56 +27,56 @@
                     @endif
                 @else
                     <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}さんのマイページ
+                        {{ Auth::user()->name }}'s Page
                     </a>
                 @endguest
             </div>
         </header>
 
     <main>
-        <a href="{{ route('tasks.index') }}" class="main" id="title">投稿一覧</a>
+        <a href="{{ route('tasks.index') }}" class="main" id="title">Tasks List</a>
 
         <form action="{{ route('tasks.index') }}" method="get">
             <input type="text" name="keyword" value="{{ $keyword }}">
-            <input type="submit" value="検索">
+            <input type="submit" value="Serch">
         </form>
 
         @foreach ($tasks as $task )
                 <div class="main">
-                    <h1>タスクの題名: {{ $task->title }}</h1>
-                    <p>タスクの説明文:{{ $task->contents }}</p>
-                    <p>タスク製作者:{{ $task->user->name }}</p>
+                    <h1>Title: {{ $task->title }}</h1>
+                    <p>Content:{{ $task->contents }}</p>
+                    <p>User:{{ $task->user->name }}</p>
                     {{-- 画像 --}}
                     <img src="{{ asset('storage/image/'.$task->image_at) }}" alt="{{ $task->title }}" width="200">
                     <hr>
                     {{-- 編集 --}}
                     @if (Auth::check() && $task->user_id === Auth::id() )
-                    <a href="{{ route('tasks.edit', $task) }}">編集</a>
+                    <a href="{{ route('tasks.edit', $task) }}">Edit</a>
                     <form action="{{ route('tasks.destroy', $task) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value='削除' onclick="return confirm('本当に削除しますか？');">
+                        <input type="submit" value='Delete' onclick="return confirm('Do you really want to delete this?');">
                     </form>
                 @endif
                 <br>
                     {{-- </form> --}}
                     {{-- コメント系 --}}
-                    <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">コメントする</button>
-                    <a href="{{ route('comments.index', $task->id) }}">コメントを見る</a>
+                    <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">Comment</button>
+                    <a href="{{ route('comments.index', $task->id) }}">See Comments</a>
                     {{-- ブックマークの追加・削除ボタン --}}
                     @if ($task->bookmarkedBy(auth()->user()))
                     {{-- ブックマーク済みの場合 --}}
                     <form action="{{ route('bookmarks.destroy', $task->bookmarkByUser(auth()->user())) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit">ブックマークから削除する</button>
+                    <button type="submit">Delete from Bookmarks</button>
                     </form>
                     @else
                     {{-- ブックマークされていない場合 --}}
                     <form action="{{ route('bookmarks.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="task_id" value="{{ $task->id }}">
-                    <button type="submit">ブックマークする</button>
+                    <button type="submit">Add to Bookmarks</button>
                     </form>
                     @endif
                 </div>
@@ -84,7 +84,7 @@
         @endforeach
 
             <div class=main>
-                <a href="{{ route('tasks.create') }}" >新規投稿</a>    
+                <a href="{{ route('tasks.create') }}" >Creat New Task</a>    
             </div>
             
             {{ $tasks->links() }}

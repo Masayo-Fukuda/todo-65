@@ -16,7 +16,7 @@
                         ToDo</a>
             </div>
             <div class="right">
-                <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+                <a href="{{ route('tasks.index') }}">Tasks List</a>
                 @guest
                     @if (Route::has('login'))
                     <a  href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -28,34 +28,33 @@
     
                 @else
                 <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                さんのマイページ</a>
+                    {{ Auth::user()->name }}'s Page</a>
             @endguest
             </div>
         </header>
 
         <main>
             <div class="main">
-                <h3>マイページ</h3>
+                <h3>Mypage</h3>
             </div>
             
             @foreach ($tasks as $task )
                 {{-- @if (strpos($task->title, $keyword) !== false || strpos($task->contents, $keyword) !== false) --}}
                     <div class="box">
-                        <h1>タスクの題名: {{ $task->title }}</h1>
-                        <p>タスクの説明文:{{ $task->contents }}</p>
+                        <h1>Title: {{ $task->title }}</h1>
+                        <p>Content:{{ $task->contents }}</p>
                         {{-- 画像 --}}
                         <img src="{{ asset('storage/image/'.$task->image_at) }}" alt="{{ $task->title }}" width="200">
                         {{-- <img src="{{ route('task->img_at') }}" alt="画像の説明"> --}}
                         {{-- <img src="{{ asset('images/' . $task->image) }}" alt="{{ $task->title }}" width="200px"> --}}
                         {{-- 編集 --}}
                         <div class="button">
-                            <a href="{{ route('tasks.edit',$task->id) }}" ><button>編集する</button></a>
+                            <a href="{{ route('tasks.edit',$task->id) }}" ><button>Edit</button></a>
                             {{-- 削除 --}}
                             <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
                                 @csrf
                                 @method('delete')
-                                <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
+                                <input type='submit' value='Delete'  onclick='return confirm("Do you really want to delete this?");'>
                             </form>
                             
                             {{-- ブックマークの追加・削除ボタン --}}
@@ -64,14 +63,14 @@
                             <form action="{{ route('bookmarks.destroy', $task->bookmarkByUser(auth()->user())) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">ブックマークから削除する</button>
+                            <button type="submit">Delete from Bookmarks</button>
                             </form>
                             @else
                             {{-- ブックマークされていない場合 --}}
                             <form action="{{ route('bookmarks.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="task_id" value="{{ $task->id }}">
-                            <button type="submit">ブックマークする</button>
+                            <button type="submit">Add to Bookmarks</button>
                             </form>
                             @endif
                         </div>
@@ -80,16 +79,16 @@
             @endforeach
 
             <div class="main">
-                <h3>ブックマーク一覧</h3>
+                <h3>Bookmarks List</h3>
             </div>
 
             <div class="main">
             @foreach ($bookmarks as $bookmark)
             {{-- 投稿者、題名、内容、写真 --}}
                     <div>
-                        <p>投稿者名：{{ $bookmark->user->name }}</p>
-                        <p>題名：{{ $bookmark->task->title }}</p>
-                        <p>内容：{{ $bookmark->task->contents }}</p>
+                        <p>User：{{ $bookmark->user->name }}</p>
+                        <p>Title：{{ $bookmark->task->title }}</p>
+                        <p>Content：{{ $bookmark->task->contents }}</p>
                         <img src="{{ asset('storage/image/'.$bookmark->task->image_at)}}" alt=""> 
                     </div>   
             @endforeach
