@@ -20,6 +20,6 @@ class Bookmarks extends Model
 
     public function task()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Task::class);
     }
 }
