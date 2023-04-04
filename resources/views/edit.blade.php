@@ -29,7 +29,9 @@
         <div class="container">
             <label>画像ファイル（2MB以内）</label>
             <br>
-            <input type="file" name="image_at">
+            <img src="{{ asset('storage/image/'.$task->image_at) }}" width="200">
+            <br>
+            <input type="file" name="image_at" value="{{ $task->image_at }}">
             @if ($errors->has('image_at'))
               <p id="error">ERROR!{{$errors->first('image_at')}}</p>
             @endif
