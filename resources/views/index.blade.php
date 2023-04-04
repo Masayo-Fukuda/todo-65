@@ -32,9 +32,9 @@
                 @endif
 
             @else
-            <a id="navbarDropdown"  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }}
-            </a>
+            さんのマイページ</a>
         @endguest
         </div>
         </header>
@@ -44,7 +44,7 @@
 
     <main>
         <div class=main>投稿一覧</div>
-        <a href="{{ route('mypage.show', Auth::user()->id ) }}">マイページへ</a>
+        {{-- <a href="{{ route('mypage.show', Auth::user()->id ) }}">マイページへ</a> --}}
 
         <form action="{{ route('tasks.index') }}" method="get">
             <input type="text" name="keyword" value="{{ $keyword }}">
