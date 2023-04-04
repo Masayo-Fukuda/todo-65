@@ -41,7 +41,7 @@
             
             @foreach ($tasks as $task )
                 {{-- @if (strpos($task->title, $keyword) !== false || strpos($task->contents, $keyword) !== false) --}}
-                    <div class="main">
+                    <div class="box">
                         <h1>タスクの題名: {{ $task->title }}</h1>
                         <p>タスクの説明文:{{ $task->contents }}</p>
                         {{-- 画像 --}}
@@ -49,30 +49,32 @@
                         {{-- <img src="{{ route('task->img_at') }}" alt="画像の説明"> --}}
                         {{-- <img src="{{ asset('images/' . $task->image) }}" alt="{{ $task->title }}" width="200px"> --}}
                         {{-- 編集 --}}
-                        <a href="{{ route('tasks.edit',$task->id) }}" ><button>編集する</button></a>
-                        {{-- 削除 --}}
-                        <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
+                        <div class="button">
+                            <a href="{{ route('tasks.edit',$task->id) }}" ><button>編集する</button></a>
+                            {{-- 削除 --}}
+                            <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
+                                @csrf
+                                @method('delete')
+                                <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
+                            </form>
+                            
+                            {{-- ブックマークの追加・削除ボタン --}}
+                            @if ($task->bookmarkedBy(auth()->user()))
+                            {{-- ブックマーク済みの場合 --}}
+                            <form action="{{ route('bookmarks.destroy', $task->bookmarkByUser(auth()->user())) }}" method="POST">
                             @csrf
-                            @method('delete')
-                            <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
-                        </form>
-                        
-                        {{-- ブックマークの追加・削除ボタン --}}
-                        @if ($task->bookmarkedBy(auth()->user()))
-                        {{-- ブックマーク済みの場合 --}}
-                        <form action="{{ route('bookmarks.destroy', $task->bookmarkByUser(auth()->user())) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">ブックマークから削除する</button>
-                        </form>
-                        @else
-                        {{-- ブックマークされていない場合 --}}
-                        <form action="{{ route('bookmarks.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="task_id" value="{{ $task->id }}">
-                        <button type="submit">ブックマークする</button>
-                        </form>
-                        @endif
+                            @method('DELETE')
+                            <button type="submit">ブックマークから削除する</button>
+                            </form>
+                            @else
+                            {{-- ブックマークされていない場合 --}}
+                            <form action="{{ route('bookmarks.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="task_id" value="{{ $task->id }}">
+                            <button type="submit">ブックマークする</button>
+                            </form>
+                            @endif
+                        </div>
                     </div>
                 {{-- @endif --}}
             @endforeach
