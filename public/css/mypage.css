@@ -97,7 +97,12 @@ header {
     background-color: #4798bb;
     color: #fff;
   }
+  
+#delete:hover {
+  background-color: #4798bb;
+  color: #fff;
 
+}
   /* a , input , button {
     color: #333;
     text-decoration: none;
