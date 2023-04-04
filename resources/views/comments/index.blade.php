@@ -13,7 +13,7 @@
         <a href="{{ url('/') }}">ToDo</a>
     </div>
     <div class="right">
-        <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+        <a href="{{ route('tasks.index') }}">Tasks List</a>
         @guest
             @if (Route::has('login'))
                 <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -22,25 +22,25 @@
                 <a href="{{ route('register') }}">{{ __('Register') }}</a>
             @endif
         @else
-            <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}さんのマイページ</a>
+            <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}'s Page</a>
         @endguest
     </div>
 </header>
 
 <main>
   <div class=main>
-    <p class=title>コメント一覧</p>
+    <p class=title>Comments List</p>
 </div>
   <div class="main">
     @foreach($comments as $comment)
       <div>
-        <p>投稿者:{{ $comment->user->name }}</p>
+        <p>User:{{ $comment->user->name }}</p>
         <br>
-        <p>コメント内容<br>{{ $comment->body }}</p>
+        <p>Comment<br>{{ $comment->body }}</p>
       </div>
     @endforeach
 </div>
-  <a href="{{ route('tasks.index') }}">投稿一覧へ戻る</a>
+  <a href="{{ route('tasks.index') }}">Back to Tasks List</a>
 </main>
 </body>
 </html>

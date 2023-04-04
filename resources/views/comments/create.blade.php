@@ -15,7 +15,7 @@
         </a>
     </div>
     <div class="right">
-        <a href="{{ route('tasks.index') }}">投稿一覧へ</a>
+        <a href="{{ route('tasks.index') }}">Tasks List</a>
         @guest
             @if (Route::has('login'))
                 <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -26,7 +26,7 @@
             @endif
         @else
             <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}さんのマイページ
+                {{ Auth::user()->name }}'s Page
             </a>
         @endguest
     </div>
@@ -35,18 +35,18 @@
 
 <main class=main>
   <div >
-    <p class=flex id=black>以下のタスクにコメントを追加</p>
+    <p class=flex id=black>Add a Comment</p>
     <div class=flex>
-      <h1>タスクの題名: {{ $tasks->title }}</h1>
-      <p>投稿者:{{ $tasks->user->name }}</p>
-      <p>タスクの説明文:{{ $tasks->contents }}</p>
+      <h1>Title: {{ $tasks->title }}</h1>
+      <p>User:{{ $tasks->user->name }}</p>
+      <p>Content:{{ $tasks->contents }}</p>
       <img src="{{ asset('storage/image/'.$tasks->image_at) }}" width="200">
       <form action="{{ route('comments.store') }}"  method="post">
         @csrf
         <input type="hidden" name="task_id" value="{{ $tasks->id }}">
-        <textarea name="body" cols="50" rows="3" placeholder="内容"></textarea>
+        <textarea name="body" cols="50" rows="3" placeholder="Content"></textarea>
         <br>
-        <button type="submit">コメントする</button>
+        <button type="submit">Add a Comment</button>
       </form>
     </div>
   </div>
