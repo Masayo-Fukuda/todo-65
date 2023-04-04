@@ -56,6 +56,7 @@
                 <div class=main>
                     <h1>タスクの題名: {{ $task->title }}</h1>
                     <p>タスクの説明文:{{ $task->contents }}</p>
+                    <p>タスク製作者:{{ $task->user->name }}</p>
                     {{-- 画像 --}}
                     <img src="{{ asset('storage/image/'.$task->image_at) }}" alt="{{ $task->title }}" width="200">
                     {{-- <img src="{{ route('task->img_at') }}" alt="画像の説明"> --}}
