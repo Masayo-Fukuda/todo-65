@@ -185,3 +185,22 @@ img {
   color: #000000;
 }
 
+button{
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  background-color: #ffffff;
+}
+
+button:hover{
+  background-color: #4798bb;
+  color: #fff;
+}
+
+#error {
+  color: rgb(150, 0, 0);
+}
+

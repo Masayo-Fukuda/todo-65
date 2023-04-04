@@ -40,7 +40,7 @@
       </div>
     @endforeach
 </div>
-  <a href="{{ route('tasks.index') }}">Back to Tasks List</a>
+  <a class="button"　href="{{ route('tasks.index') }}">Back to Tasks List</a>
 </main>
 </body>
 </html>
