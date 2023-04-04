@@ -5,6 +5,47 @@ body {
   flex-direction: column;
   align-items: center;
 }
+* {
+  padding: 0;
+  margin: 0;
+}
+
+
+header {
+  height: 50px;
+  width: 100%;
+  background: #4798bb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left {
+  margin-left: 90px;
+}
+
+.left > a{
+  text-decoration: none;
+  color: white;
+}
+
+.left > a:hover{
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.right {
+  margin-right: 90px;
+}
+
+.right > a{
+  text-decoration: none;
+  color: white;
+  margin: 10px;
+}
+
+.right > a:hover{
+  color: rgba(0, 0, 0, 0.6);
+}
 
 div {
   margin: 20px;
