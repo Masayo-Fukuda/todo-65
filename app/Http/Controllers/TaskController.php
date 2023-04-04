@@ -122,7 +122,7 @@ class TaskController extends Controller
         abort(403); // アクセス拒否
     }
 
-    return view('tasks.edit', compact('task'));
+    return view('edit', compact('task'));
 }
 
     function update(Request $request, $id)
