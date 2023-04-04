@@ -15,7 +15,6 @@
             </a>
         </div>
         <div class="right">
-            <a href="{{ route('tasks.index') }}">投稿一覧</a>
             @guest
                 @if (Route::has('login'))
                     <a href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -25,6 +24,7 @@
                     <a href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
+                <a href="{{ route('tasks.index') }}">投稿一覧</a>
                 <a id="navbarDropdown"  href="{{ route('mypage.show', Auth::user()->id ) }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}さんのマイページ
                 </a>
