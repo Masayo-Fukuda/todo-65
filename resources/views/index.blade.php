@@ -14,7 +14,7 @@
     <header>
         <div class="left">
             <a href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}</a>
+                    ToDo</a>
         </div>
         <div class="right">
             {{-- <ul>
