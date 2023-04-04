@@ -31,23 +31,26 @@
         @endguest
     </div>
 </header>
-  <h1>以下のタスクにコメントを追加</h1>
-  <div>
-    <h2>投稿者:{{ $tasks->user->name }}</h2>
-    <h2>タスクの題名: {{ $tasks->title }}</h2>
-    <h2>タスクの説明文:{{ $tasks->contents }}</h2>
-    <img src="{{ asset('storage/image/'.$tasks->image_at) }}" width="200">
-  </div>
 
-  <div>
-    <form action="{{ route('comments.store') }}"  method="post">
-      @csrf
-      <input type="hidden" name="task_id" value="{{ $tasks->id }}">
-      <textarea name="body" cols="50" rows="3" placeholder="内容"></textarea>
-      <br>
-      <button type="submit">コメントする</button>
-    </form>
+
+<main class=main>
+  <div >
+    <p class=flex id=black>以下のタスクにコメントを追加</p>
+    <div class=flex>
+      <h1>タスクの題名: {{ $tasks->title }}</h1>
+      <p>投稿者:{{ $tasks->user->name }}</p>
+      <p>タスクの説明文:{{ $tasks->contents }}</p>
+      <img src="{{ asset('storage/image/'.$tasks->image_at) }}" width="200">
+      <form action="{{ route('comments.store') }}"  method="post">
+        @csrf
+        <input type="hidden" name="task_id" value="{{ $tasks->id }}">
+        <textarea name="body" cols="50" rows="3" placeholder="内容"></textarea>
+        <br>
+        <button type="submit">コメントする</button>
+      </form>
+    </div>
   </div>
+</main>
   
 </body>
 </html>
