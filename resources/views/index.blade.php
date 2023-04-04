@@ -59,16 +59,22 @@
                     <p>タスク製作者:{{ $task->user->name }}</p>
                     {{-- 画像 --}}
                     <img src="{{ asset('storage/image/'.$task->image_at) }}" alt="{{ $task->title }}" width="200">
-                    {{-- <img src="{{ route('task->img_at') }}" alt="画像の説明"> --}}
-                    {{-- <img src="{{ asset('images/' . $task->image) }}" alt="{{ $task->title }}" width="200px"> --}}
                     {{-- 編集 --}}
-                    <a href="{{ route('tasks.edit',$task->id) }}" >編集する</a>
+                    @if (Auth::check() && $task->user_id === Auth::id() )
+                    <a href="{{ route('tasks.edit', $task) }}">編集する</a>
+                    <form action="{{ route('tasks.destroy', $task) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value='削除' onclick="return confirm('本当に削除しますか？');">
+                    </form>
+                @endif
+                    {{-- <a href="{{ route('tasks.edit',$task->id) }}" >編集する</a> --}}
                     {{-- 削除 --}}
-                    <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
+                    {{-- <form action='{{ route('tasks.destroy',$task->id) }}' method='post'>
                         @csrf
                         @method('delete')
-                        <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'>
-                    </form>
+                        <input type='submit' value='削除'  onclick='return confirm("本当に削除しますか？");'> --}}
+                    {{-- </form> --}}
                     {{-- コメント系 --}}
                     <button type="button" onclick="location.href='{{ route('comments.create', $task->id) }}'">コメントする</button>
                     <a href="{{ route('comments.index', $task->id) }}">コメントを見る</a>
