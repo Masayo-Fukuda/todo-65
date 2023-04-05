@@ -35,11 +35,15 @@
 
     <main>
         <a href="{{ route('tasks.index') }}" class="main" id="title">Tasks List</a>
+        <div class=main>
+            <a href="{{ route('tasks.create') }}" >Creat New Task</a>    
+        </div>
 
         <form action="{{ route('tasks.index') }}" method="get">
             <input type="text" name="keyword" value="{{ $keyword }}">
             <input type="submit" value="Serch">
         </form>
+        
 
         @foreach ($tasks as $task )
                 <div class="main">
@@ -84,10 +88,10 @@
         @endforeach
 
         {{ $tasks->links() }}
+        <br>
+        <br>
+        
 
-            <div class=main>
-                <a href="{{ route('tasks.create') }}" >Creat New Task</a>    
-            </div>
     </main>
     </body>
 </html>
